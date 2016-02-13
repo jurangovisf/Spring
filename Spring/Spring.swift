@@ -370,7 +370,11 @@ public class Spring : NSObject {
                 animation.timingFunction = getTimingFunction(curve)
                 animation.duration = CFTimeInterval(duration)
                 animation.additive = true
-                animation.repeatCount = repeatCount
+                if repeatCount == -1 {
+                    animation.repeatCount = Float.infinity
+                } else {
+                    animation.repeatCount = repeatCount
+                }
                 animation.beginTime = CACurrentMediaTime() + CFTimeInterval(delay)
                 layer.addAnimation(animation, forKey: "scaleUp")
             }
